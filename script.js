@@ -3,7 +3,6 @@ document.getElementById("countButton").onclick = function () {
 
     typedText = typedText.toLowerCase();
     typedText = typedText.replace(/[^a-z'\s]+/g, "");
-    
     let letterCounts = {};
     
     for (let i = 0; i < typedText.length; i++) {
@@ -14,27 +13,33 @@ document.getElementById("countButton").onclick = function () {
         else {
             letterCounts[currentLetter]++;
         }
-        
         }
     
     let words = typedText.split(/\s/);
-    let wordcount = {}
+    let wordCount = {}
     for (let i = 0; i < words.length; i++) {
-        currentword = words[i];
-        if (wordcount[currentword] === undefined) {
-            wordcount[currentword] = 1;
+        let currentWord = words[i];
+        if (wordCount[currentWord] === undefined) {
+            wordCount[currentWord] = 1;
         } 
         else {
-            wordcount[currentword]++;
+            wordCount[currentWord]++;
         }
+        console.log(wordCount)
         }
-        console.log(words);
-    for (groups in wordcount) {
+    for (word in wordCount) {
+        console.log(word)
         let spans = document.createElement("span");
-        let groupContent = document.createTextNode(words + wordcount[words]);
-        spans.appendChild(groupContent);
+        let wordContent = document.createTextNode(word + ":" + wordCount[word] + " ");
+        spans.appendChild(wordContent);
         document.getElementById("wordsDiv").appendChild(spans);
-    }
+    }    
+    // for (groups in wordCount) {
+    //     let spans = document.createElement("span");
+    //     let groupContent = document.createTextNode(words + wordCount[groups]);
+    //     spans.appendChild(groupContent);
+    //     document.getElementById("wordsDiv").appendChild(spans);
+    // }
 
     for (letter in letterCounts) {
             let span = document.createElement("span");
